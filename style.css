@@ -1,0 +1,289 @@
+/* --- RESET & VARIABLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-black: #0a0a0a;
+    --text-white: #ffffff;
+    --text-gold: #d4af37;
+    --text-grey: #888888;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- UTILITIES --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-pad { padding: 120px 0; }
+.center-text { text-align: center; }
+.center { margin: 0 auto; }
+.gold-text { color: var(--text-gold); letter-spacing: 4px; }
+
+/* ============================================
+   ANIMATION CLASSES
+   ============================================ */
+.fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+.line-anim {
+    height: 1px;
+    background: var(--text-gold);
+    width: 0;
+    transition: width 1s ease;
+}
+
+.line-anim.visible { width: 60px; }
+
+/* --- NAVBAR --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.4s ease;
+}
+
+nav.scrolled {
+    padding: 15px 50px;
+    background: rgba(10, 10, 10, 0.95);
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 6px;
+}
+
+.nav-links { display: flex; gap: 40px; }
+.nav-links a {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { opacity: 1; color: var(--text-gold); }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    z-index: -1;
+}
+
+/* Decorative circles */
+.hero-bg::before, .hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 50%;
+}
+.hero-bg::before { width: 400px; height: 400px; }
+.hero-bg::after { width: 600px; height: 600px; }
+
+.hero-content h2 {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--text-grey);
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-serif);
+    font-size: 80px;
+    font-style: italic;
+    line-height: 1.1;
+    margin-bottom: 40px;
+}
+
+.btn-main {
+    padding: 15px 35px;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    transition: 0.4s;
+}
+
+.btn-main:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* --- SHOWCASE --- */
+.section-title { margin-bottom: 60px; }
+.section-title h3 {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.product-card { overflow: hidden; }
+
+.product-card .img-wrapper {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    background: #111;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease, opacity 0.5s ease;
+    opacity: 0.85;
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.product-info h4 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.product-info p {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-grey);
+}
+
+/* --- COMING SOON --- */
+#coming-soon {
+    background: #050505;
+}
+
+#coming-soon h1 {
+    font-family: var(--font-serif);
+    font-size: 56px;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+#coming-soon p {
+    color: var(--text-grey);
+    margin-bottom: 30px;
+}
+
+#signup-form { display: flex; justify-content: center; gap: 0; }
+
+#signup-form input {
+    padding: 15px 20px;
+    background: transparent;
+    border: 1px solid #333;
+    border-right: none;
+    color: #fff;
+    width: 300px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#signup-form input:focus { border-color: var(--text-gold); }
+
+#signup-form button {
+    padding: 15px 30px;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#signup-form button:hover { background: var(--text-gold); border-color: var(--text-gold); }
+
+.socials { margin-top: 40px; font-size: 18px; }
+.socials i { margin: 0 15px; cursor: pointer; opacity: 0.5; transition: 0.3s; }
+.socials i:hover { opacity: 1; color: var(--text-gold); }
+
+/* --- FOOTER --- */
+footer {
+    padding: 30px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #444;
+    border-top: 1px solid #111;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 48px; }
+    .product-grid { grid-template-columns: 1fr; gap: 50px; }
+    nav { padding: 20px; }
+    .nav-links { display: none; }
+    #signup-form { flex-direction: column; align-items: center; }
+    #signup-form input { width: 100%; max-width: 300px; border-right: 1px solid #333; margin-bottom: 10px; }
+}
