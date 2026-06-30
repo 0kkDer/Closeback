@@ -50,6 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Chapter Two CTA anchor (safeguard in case selector changes)
+    const viewFullCollection = document.getElementById('view-full-collection');
+    if (viewFullCollection) {
+        viewFullCollection.addEventListener('click', (e) => {
+            const target = document.getElementById('full-collection');
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+
+
 
     // ============================================
     // 4. FORM SUBMIT HANDLING
